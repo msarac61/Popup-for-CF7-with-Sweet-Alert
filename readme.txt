@@ -1,7 +1,7 @@
-=== Wordpress Contact Form 7 Sweet Alert  ===
+=== Popup for CF7 with Sweet Alert  ===
 
 Contributors: metin_nn
-Tags: cf7 popup,contact form 7 popup,cf7 sweetalert
+Tags: cf7 popup,contact form 7 popup,cf7 sweetalert,cf7 popup,contact form popup
 Donate link: https://metinsarac.net/
 Requires at least: 3.0.1
 Tested up to: 5.6.2
@@ -10,7 +10,7 @@ Stable tag: trunk
 License: GPL-3.0+
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
-Wordpress Contact Form 7 Sweet Alert 
+Popup for CF7 with Sweet Alert
 
 == Description ==
 
