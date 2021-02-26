@@ -9,5 +9,5 @@ span.wpcf7-not-valid-tip {
 
 input[aria-invalid="true"],
 select[aria-invalid="true"] {
-    border-color: #ff2c00; 
+    border-color: #ff2c00!important; 
 }
