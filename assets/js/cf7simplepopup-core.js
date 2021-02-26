@@ -7,7 +7,6 @@
 
  document.addEventListener('wpcf7submit', function(event) {
 
-     console.log(event);
      if (event.detail.status == "validation_failed") {
          Swal.fire(
              '',
