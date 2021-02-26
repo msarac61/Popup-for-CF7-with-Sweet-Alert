@@ -28,7 +28,7 @@ if ( ! defined( 'WPINC' ) ) {
 define('cf7simplepopup_CORE_CSS',plugins_url( 'assets/css/', __FILE__ ));
 define('cf7simplepopup_CORE_JS',plugins_url( 'assets/js/', __FILE__ ));
 
-// Register Css
+// Register Css & JS
 
 function cf7simplepopup_register(){
 
