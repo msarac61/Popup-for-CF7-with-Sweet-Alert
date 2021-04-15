@@ -2,7 +2,7 @@
 
 	/**
 	 * @link         https://metinsarac.net/
-	 * @since        1.0
+	 * @since        1.1
 	 * @package     Popup_for_CF7_with_Sweet_Alert
 	 *
 	 * @wordpress-plugin
@@ -10,7 +10,7 @@
 	 * Plugin Name:  Popup for CF7 with Sweet Alert
 	 * Plugin URI:   https://metinsarac.net/
 	 * Description:  Popup for CF7 with Sweet Alert
-	 * Version:      1.0
+	 * Version:      1.1
 	 * Author:       Metin Saraç
 	 * License:      GPL-3.0+
 	 * License URI:  http://www.gnu.org/licenses/gpl-3.0.txt

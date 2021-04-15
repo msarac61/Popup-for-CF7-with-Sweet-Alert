@@ -4,7 +4,7 @@ Contributors: metin_nn
 Tags: cf7 popup,contact form 7 popup,cf7 sweetalert,cf7 popup,contact form popup
 Donate link: https://metinsarac.net/
 Requires at least: 3.0.1
-Tested up to: 5.6.2
+Tested up to: 5.7.1
 Requires PHP: 5.4
 Stable tag: 1.0
 License: GPL-3.0+
