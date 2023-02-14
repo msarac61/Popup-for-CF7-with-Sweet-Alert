@@ -10,7 +10,7 @@
      * Plugin Name:  Popup for CF7 with Sweet Alert
      * Plugin URI:   https://metinsarac.net/
      * Description:  Popup for CF7 with Sweet Alert
-     * Version:      1.6
+     * Version:      1.6.1
      * Author:       Metin Saraç
      * Author URI: https://www.linkedin.com/in/metin-sara%C3%A7-b51a2073/
      * License:      GPL-3.0+
@@ -43,16 +43,16 @@
 
     function cf7simplepopup_register() {
 
-        $version = '1.6';
+        $cf7spVersion = '1.6';
 
-        wp_enqueue_style( 'cf7simplepopup-css', cf7simplepopup_CORE_CSS . 'cf7simplepopup-core.css', null, $version, 'all' );
-        wp_enqueue_script( 'cf7simplepopup-js', cf7simplepopup_CORE_JS . 'cf7simplepopup-core.js', null, $version, 'all' );
-        wp_enqueue_script( 'sweetalert', cf7simplepopup_CORE_JS . 'sweetalert2.all.min.js', null, $version, 'all' );
+        wp_enqueue_style( 'cf7simplepopup-css', cf7simplepopup_CORE_CSS . 'cf7simplepopup-core.css', null, $cf7spVersion, 'all' );
+        wp_enqueue_script( 'cf7simplepopup-js', cf7simplepopup_CORE_JS . 'cf7simplepopup-core.js', null, $cf7spVersion, 'all' );
+        wp_enqueue_script( 'sweetalert', cf7simplepopup_CORE_JS . 'sweetalert2.all.min.js', null, $cf7spVersion, 'all' );
     }
 
     add_action( 'wp_enqueue_scripts', 'cf7simplepopup_register' );
 
-    // Script Configration
+    // Plugin Configuration
 
     function cf7windowWidthHead() {
 
@@ -70,9 +70,9 @@
 
     // Admin Setting(s)
 
-    add_action( 'admin_menu', 'wpdocs_register_my_custom_submenu_page' );
+    add_action( 'admin_menu', 'cf7simplepopup_admin' );
 
-    function wpdocs_register_my_custom_submenu_page() {
+    function cf7simplepopup_admin() {
         add_submenu_page(
             'wpcf7',
             __( 'CF7 Sweet Alert Settings', 'cf7simplepopup' ),
