@@ -10,6 +10,7 @@
      * Plugin Name:  Popup for CF7 with Sweet Alert
      * Plugin URI:   https://metinsarac.net/
      * Description:  Popup for CF7 with Sweet Alert
+     * Requires at least: 5.2
      * Version:      1.6.1
      * Author:       Metin Saraç
      * Author URI: https://www.linkedin.com/in/metin-sara%C3%A7-b51a2073/
@@ -23,6 +24,10 @@
     if ( !defined( 'WPINC' ) ) {
         die;
     }
+
+    // Version
+
+    define( 'cf7SIMPLEPOPUP_VERSION', '1.6.1' );
 
     // Load plugin textdomain.
 
@@ -41,20 +46,19 @@
 
     // Register Css & JS
 
-    function cf7simplepopup_register() {
+    function cf7simpleRegister() {
 
-        $cf7spVersion = '1.6';
+        wp_enqueue_style( 'cf7simplepopup', cf7simplepopup_CORE_CSS . 'cf7simplepopup-core.css', null, cf7SIMPLEPOPUP_VERSION, 'all' );
+        wp_enqueue_script( 'cf7simplepopup', cf7simplepopup_CORE_JS . 'cf7simplepopup-core.js', null, cf7SIMPLEPOPUP_VERSION, 'all' );
+        wp_enqueue_script( 'sweetalert', cf7simplepopup_CORE_JS . 'sweetalert2.all.min.js', null, cf7SIMPLEPOPUP_VERSION, 'all' );
 
-        wp_enqueue_style( 'cf7simplepopup-css', cf7simplepopup_CORE_CSS . 'cf7simplepopup-core.css', null, $cf7spVersion, 'all' );
-        wp_enqueue_script( 'cf7simplepopup-js', cf7simplepopup_CORE_JS . 'cf7simplepopup-core.js', null, $cf7spVersion, 'all' );
-        wp_enqueue_script( 'sweetalert', cf7simplepopup_CORE_JS . 'sweetalert2.all.min.js', null, $cf7spVersion, 'all' );
     }
 
-    add_action( 'wp_enqueue_scripts', 'cf7simplepopup_register' );
+    add_action( 'wp_enqueue_scripts', 'cf7simpleRegister' );
 
     // Plugin Configuration
 
-    function cf7windowWidthHead() {
+    function cf7simpleConfiguration() {
 
         $width     = get_option( 'cf7simplePopupWidth' ) == true ? get_option( 'cf7simplePopupWidth' ) : "500";
         $autoClose = get_option( 'cf7simplePopupAutoClose' ) == true ? get_option( 'cf7simplePopupAutoClose' ) : "7000";
@@ -66,23 +70,23 @@
 
     }
 
-    add_action( 'wp_head', 'cf7windowWidthHead' );
+    add_action( 'wp_head', 'cf7simpleConfiguration' );
 
-    // Admin Setting(s)
+    // Admin Settings
 
-    add_action( 'admin_menu', 'cf7simplepopup_admin' );
+    add_action( 'admin_menu', 'cf7simpleAdmin' );
 
-    function cf7simplepopup_admin() {
+    function cf7simpleAdmin() {
         add_submenu_page(
             'wpcf7',
             __( 'CF7 Sweet Alert Settings', 'cf7simplepopup' ),
             __( 'CF7 Swal Settings', 'cf7simplepopup' ),
             'manage_options',
-            'cf7-simplepopup',
-            'cf7simplepopup_page_callback' );
+            'cf7simplepopup',
+            'cf7simpleAdmin_callback' );
     }
 
-    function cf7simplepopup_page_callback() {
+    function cf7simpleAdmin_callback() {
 
         if ( isset( $_POST['cf7simplePopupNonce'] ) && !wp_verify_nonce( $_POST['cf7simplePopupNonce'], __FILE__ ) ) {
 
@@ -95,35 +99,35 @@
 
 	<div class="wrap">
 
-		<h1><?php _e( 'CF7 Sweet Alert Settings', 'cf7simplepopup' ) ?></h1>
+		<h1><?php _e( 'CF7 Sweet Alert Settings', 'cf7simplepopup' )?></h1>
 
 		<p><?php echo '<span class="dashicons dashicons-info" aria-hidden="true"></span> ' . __( 'You can leave the boxes blank for the default values.', 'cf7simplepopup' ) ?></p>
 
 		<form method="post">
 
-			<?php wp_nonce_field( 'cf7simplePopup', 'cf7simplePopupNonce' ); ?>
+			<?php wp_nonce_field( 'cf7simplePopup', 'cf7simplePopupNonce' );?>
 
 			<table class="form-table">
 
 				<tr>
-					<th><label for="cf7simplePopupWidth"><?php _e( 'Popup Window Width', 'cf7simplepopup' ); ?></label></th>
+					<th><label for="cf7simplePopupWidth"><?php _e( 'Popup Window Width', 'cf7simplepopup' );?></label></th>
 					<td>
 						<input type="text" name="cf7simplePopupWidth" id="cf7simplePopupWidth" value="<?php echo get_option( 'cf7simplePopupWidth' ); ?>" class="regular-text">
-						<p class="description" id="tagline-description"><?php _e( 'Please Enter <b>Pixel</b> Value.', 'cf7simplepopup' ); ?></p>
+						<p class="description" id="tagline-description"><?php _e( 'Please Enter <b>Pixel</b> Value.', 'cf7simplepopup' );?></p>
 					</td>
 				</tr>
 
 				<tr>
-					<th><label for="cf7simplePopupWidth"><?php _e( 'Popup Window Auto Close Time', 'cf7simplepopup' ); ?></label></th>
+					<th><label for="cf7simplePopupWidth"><?php _e( 'Popup Window Auto Close Time', 'cf7simplepopup' );?></label></th>
 					<td>
 						<input type="text" name="cf7simplePopupAutoClose" id="cf7simplePopupAutoClose" value="<?php echo get_option( 'cf7simplePopupAutoClose' ); ?>" class="regular-text">
-						<p class="description" id="tagline-description"><?php _e( 'Please enter the value in miliseconds. <b>1 Second = 1000ms</b>', 'cf7simplepopup' ); ?></p>
+						<p class="description" id="tagline-description"><?php _e( 'Please enter the value in miliseconds. <b>1 Second = 1000ms</b>', 'cf7simplepopup' );?></p>
 					</td>
 				</tr>
 
 			</table>
 
-			<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e( 'Save Settings', 'cf7simplepopup' ); ?>"></p>
+			<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e( 'Save Settings', 'cf7simplepopup' );?>"></p>
 
 		</form>
 
@@ -131,4 +135,6 @@
 
 	<?php
 
-    }
+        }
+
+    ?>
